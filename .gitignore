@@ -1,0 +1,8 @@
+.idea
+target
+project/target
+ui/apps/../*.js
+ui/apps/scalajs-material-ui/*.js
+ui/apps/scalajs-material-ui/*.map
+client/node_modules
+../target/

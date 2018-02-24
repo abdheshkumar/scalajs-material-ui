@@ -1,0 +1,78 @@
+html, body, .joint-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+     user-select: none;*/
+    font-family: sans-serif, Arial;
+    overflow: hidden;
+}
+
+.app-body {
+    position: relative;
+    height: -moz-calc(100% - 60px);
+    height: -webkit-calc(100% - 60px);
+    height: calc(100% - 60px);
+}
+
+/*  Paper  */
+.paper-container {
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*height: 100%;*/
+    width: 100% !important;
+    overflow: hidden;
+    box-sizing: border-box;
+    left: 240px;
+    /*right: 240px;*/
+}
+
+/*  Stencil  */
+.stencil-container {
+    position: absolute;
+   /* left: 0;
+    top: 0;*/
+    width: 240px;
+    height: 100%;
+}
+
+.joint-stencil .joint-element[data-type="basic.Image"] text,
+.joint-stencil .joint-element[data-type="devs.Atomic"] .inPorts text,
+.joint-stencil .joint-element[data-type="devs.Atomic"] .outPorts text,
+.joint-stencil .joint-element[data-type="pn.Transition"] text,
+.joint-stencil .joint-element .joint-port text {
+    display: none;
+}
+
+.joint-stencil .joint-element.joint-type-uml rect,
+.joint-stencil .joint-element.joint-type-uml path {
+    stroke: #4a4d6e;
+}
+
+.layout {
+    position: absolute;
+    top: 74px;
+    right: 0;
+}
+
+.paper-container .joint-element:hover .element-tools {
+    display: inline;
+}
+
+.play-label {
+    display: block;
+}
+
+.file-input-btn{
+    display: none !important;
+}
+.browse-container div{
+    margin-right: 20px;
+}
