@@ -43,8 +43,8 @@ window.logger = (function(){
  * @param componentClass component class name
  */
 window.mui.createComponentWithStyle = function(styleCreator,options,componentClass){
-    var t = window.mui.withStyles(styleCreator,options)(componentClass)
-    console.log(t)
+    var t = window.mui.withStyles(styleCreator,options)(componentClass);
+    console.log(t);
     return t;
 };
 

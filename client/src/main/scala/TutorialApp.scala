@@ -1,6 +1,8 @@
+import org.scalajs.dom
+
 object TutorialApp {
   def main(args: Array[String]): Unit = {
-    println("Hello world!")
+    SimpleComponent(SimpleComponent.Props("Simple Name")).renderIntoDOM(dom.document.getElementById("playground"))
   }
 
 
