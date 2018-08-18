@@ -6,7 +6,7 @@ import japgolly.scalajs.react.internal.Box
 import japgolly.scalajs.react.{Children => ChildrenType}
 import scala.scalajs.js
 
-object WithStylesComponent {
+object HigherOrderComponent {
 
   case class Props(styles: js.Function1[MuiRawTheme, js.Object],
                    options: js.Object)

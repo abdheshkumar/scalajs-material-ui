@@ -14,12 +14,12 @@ object SimpleComponent {
     .renderBackendWithChildren[Backend]
     .build
 
-  val childProps = WithStylesComponent.Props(theme => {
+  val childProps = HigherOrderComponent.Props(theme => {
     dom.console.log(theme)
     js.Dynamic.literal("root" -> js.Dynamic.literal("backgroundColor" -> "red"))
   }, js.Dynamic.literal("name" -> "SimpleComponent"))
 
-  def apply(props: Props): VdomElement = WithStylesComponent(stateComponent)(props)(childProps)
+  def apply(props: Props): VdomElement = HigherOrderComponent(stateComponent)(props)(childProps)
 
   case class Props(name: String) {
 
