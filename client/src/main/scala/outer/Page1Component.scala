@@ -4,6 +4,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 import pages.{InnerPage1, OuterPage, Page}
+import scalajs.Welcome
 
 object Page1Component {
 
@@ -19,7 +20,8 @@ object Page1Component {
           ^.href := "",
           "Go to InnerPage1",
           ^.onClick --> p.ctrl.set(OuterPage(InnerPage1))
-        )
+        ),
+        Welcome("UserName")
       )
   }
 

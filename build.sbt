@@ -34,7 +34,7 @@ val client = Project("client", file("client"))
     fullOptJS in Compile := {
       val srcRoot = baseDirectory.value.getParentFile.getParentFile
       val js = (fullOptJS in Compile).value
-      Process("npm run build-prod", baseDirectory.value).#&&(Process("java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level SIMPLE --js_output_file " + (srcRoot / "web_servers/static/apps/ngage.client.apps.service-management-app/all.min.js").getAbsolutePath, baseDirectory.value)).run()
+      //Process("npm run build-prod", baseDirectory.value).#&&(Process("java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level SIMPLE --js_output_file " + (srcRoot / "web_servers/static/apps/service-management-app/all.min.js").getAbsolutePath, baseDirectory.value)).run()
       js
     },
     fastOptJS in Compile := {

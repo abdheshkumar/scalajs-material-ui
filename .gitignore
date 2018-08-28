@@ -6,3 +6,4 @@ ui/apps/scalajs-material-ui/*.js
 ui/apps/scalajs-material-ui/*.map
 client/node_modules
 ../target/
+**/**/node_modules
