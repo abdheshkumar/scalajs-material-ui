@@ -3,6 +3,10 @@ package pages
 import inner.{InnerPage1Component, InnerPage2Component}
 import japgolly.scalajs.react.extra.router.{Redirect, RouterConfig, RouterConfigDsl, StaticDsl}
 import outer.{Page1Component, Page2Component}
+import reactjs.{JssProvider, MuiThemeProvider}
+import scalajs.App
+
+import scala.scalajs.js
 
 sealed trait Page
 
@@ -12,11 +16,16 @@ object Page {
     import dsl._
     (emptyRule
       | (staticRoute(root, Page1) ~> renderR { ctrl =>
-      Page1Component(ctrl).render
-    }) | (staticRoute("page2", Page2) ~> renderR { ctrl =>
+        Page1Component(ctrl).render
+      }) | (staticRoute("page2", Page2) ~> renderR { ctrl =>
       Page2Component(ctrl).render
     }) | InnerPage.route)
       .notFound(_ => redirectToPage(Page1)(Redirect.Replace))
+      .renderWith((_, result) => {
+        MuiThemeProvider(
+          js.Dynamic.global.react_ui.theme.asInstanceOf[js.Object]
+        )(JssProvider(classNamePrefix = "abtechsoft-")(App(result.render())))
+      })
       .logToConsole
   }
 }
@@ -36,7 +45,7 @@ object InnerPage {
 
   def innerPageToOuterPage(innerPage: InnerPage): Page = innerPage match {
     case InnerToOuterPage(page) => page
-    case page => OuterPage(page)
+    case page                   => OuterPage(page)
   }
 
   def route: StaticDsl.Rule[Page] = {
@@ -44,9 +53,9 @@ object InnerPage {
       import dsl._
       (emptyRule
         | (staticRoute(root, InnerPage1) ~> renderR { ctrl =>
-        InnerPage1Component(ctrl).render
-      }) | (dynamicRouteCT("inner2" / string("[a-z]+").caseClass[InnerPage2]) ~> dynRenderR { (page, ctrl) =>
-        InnerPage2Component(ctrl).render
+          InnerPage1Component(ctrl).render
+        }) | (dynamicRouteCT("inner2" / string("[a-z]+").caseClass[InnerPage2]) ~> dynRenderR {
+        (page, ctrl) => InnerPage2Component(ctrl).render
       }))
     }
     rules
@@ -60,6 +69,3 @@ case object InnerPage1 extends InnerPage
 case class InnerPage2(q: String) extends InnerPage
 
 case class InnerToOuterPage(page: Page) extends InnerPage
-
-
-

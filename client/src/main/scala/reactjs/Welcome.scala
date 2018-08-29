@@ -1,4 +1,4 @@
-package scalajs
+package reactjs
 
 import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
 

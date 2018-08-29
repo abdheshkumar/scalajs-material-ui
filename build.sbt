@@ -25,8 +25,7 @@ val client = Project("client", file("client"))
         scalaCssReact.value ++
         scalaJsdiode.value ++
         scalaJsdom.value ++
-        scalaJsReactBridge.value ++
-        scalaJsReactMaterialUI.value
+        scalaJsReactBridge.value
   )
   .settings(Common.buildSettings: _*)
   .settings(

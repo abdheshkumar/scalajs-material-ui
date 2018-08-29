@@ -1,11 +1,12 @@
-import japgolly.scalajs.react._
+package scalajs
 import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.{BackendScope, Callback, PropsChildren, ReactEvent, ScalaComponent}
 import org.scalajs.dom
 import org.scalajs.dom.html.Div
+import reactjs.Button
 
 import scala.scalajs.js
-
 
 object SimpleComponent {
 
@@ -47,4 +48,3 @@ object SimpleComponent {
   }
 
 }
-

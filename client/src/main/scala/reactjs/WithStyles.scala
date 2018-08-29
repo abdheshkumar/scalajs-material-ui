@@ -1,5 +1,6 @@
+package reactjs
 
-import chandu0101.scalajs.react.components.materialui.MuiRawTheme
+import reactjs.theme.MuiRawTheme
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSGlobal

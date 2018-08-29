@@ -1,6 +1,7 @@
+package reactjs
 import com.payalabs.scalajs.react.bridge.{ReactBridgeComponent, WithProps}
-import japgolly.scalajs.react.{Callback, ReactEvent}
-
+import japgolly.scalajs.react.Callback
+import japgolly.scalajs.react.ReactEvent
 import scala.scalajs.js
 
 object Button extends ReactBridgeComponent {
