@@ -4,7 +4,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 import pages.{InnerPage1, OuterPage, Page}
-import reactjs.Welcome
+import reactjs.{TestClass, Welcome}
 
 object Page1Component {
 
@@ -12,8 +12,14 @@ object Page1Component {
     @inline def render: VdomElement = Component(this)
   }
 
-  final class Backend($: BackendScope[Props, Unit]) {
-    def render(p: Props): VdomElement =
+  case class State(data: TestClass)
+
+  final class Backend($: BackendScope[Props, State]) {
+
+    def updateField(data: TestClass): Callback = $.modState(s => s.copy(data = data))
+
+    def render(p: Props, state: State): VdomElement = {
+     println(s"State:: ${state.data}")
       <.div(
         "Page1",
         <.a(
@@ -21,11 +27,16 @@ object Page1Component {
           "Go to InnerPage1",
           ^.onClick --> p.ctrl.set(OuterPage(InnerPage1))
         ),
-        Welcome("Abdhesh, From ScalaJs component")
+        Welcome("Abdhesh, From ScalaJs component",
+          state.data,
+          updateField
+        )
       )
+    }
   }
 
   private val Component = ScalaComponent.builder[Props]("Page1Component")
+    .initialState(State(TestClass("", "")))
     .renderBackend[Backend]
     .build
 

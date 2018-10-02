@@ -24,6 +24,11 @@ object Macros {
               q"$conv.toJs(value.${m.name.toTermName})"
             }
             (m.name.toString, converted)
+          case m:MethodSymbol if m.isMethod && m.name.toString.startsWith("with") => //Expose only withXXX case class's functions
+            val converted = {
+              q"value.${m.name.toTermName} _"
+            }
+            (m.name.toString, converted)
         }.toList
         c.Expr[List[(String, js.Any)]](q"$convertedProps")
       }

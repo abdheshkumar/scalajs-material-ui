@@ -27,7 +27,8 @@ val core = (project in file("core"))
         "org.scala-js" %%% "scalajs-dom" % scalaJsDomV % Provided,
         "com.github.japgolly.scalajs-react" %%% "core" % scalaJsReactV % Provided,
         "org.scalatest" %%% "scalatest" % scalatestV % Test,
-        "com.github.japgolly.scalajs-react" %%% "test" % scalaJsReactV % Test
+        "com.github.japgolly.scalajs-react" %%% "test" % scalaJsReactV % Test,
+        "org.scalameta" %% "scalameta" % "4.0.0"
       ) ++ scalaJsReactBridge.value
     }
   ).enablePlugins(ScalaJSPlugin)
