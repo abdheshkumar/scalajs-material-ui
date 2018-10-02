@@ -11,6 +11,27 @@ val server = Project("server", file("server"))
     organizationName := "abtechsoft.com",
     libraryDependencies ++= akkHttp.value)
 
+val core = (project in file("core"))
+  .settings(
+    organization := "com.payalabs",
+    name := "core",
+    crossScalaVersions := Seq("2.12.2", "2.11.12"),
+    scalaVersion := crossScalaVersions.value.head,
+    scalacOptions := Seq("-unchecked", "-deprecation", "-feature"),
+    libraryDependencies ++= {
+      val scalaJsDomV = "0.9.3"
+      val scalaJsReactV = "1.2.0"
+      val scalatestV = "3.0.1"
+      Seq(
+        "org.scala-lang" % "scala-reflect" % scalaVersion.value % Provided,
+        "org.scala-js" %%% "scalajs-dom" % scalaJsDomV % Provided,
+        "com.github.japgolly.scalajs-react" %%% "core" % scalaJsReactV % Provided,
+        "org.scalatest" %%% "scalatest" % scalatestV % Test,
+        "com.github.japgolly.scalajs-react" %%% "test" % scalaJsReactV % Test
+      ) ++ scalaJsReactBridge.value
+    }
+  ).enablePlugins(ScalaJSPlugin)
+
 val client = Project("client", file("client"))
   .settings(
     name := "scalajs-material-ui",
@@ -41,7 +62,9 @@ val client = Project("client", file("client"))
       Process("npm run build-dev", baseDirectory.value).run().exitValue()
       js
     }
-  ).enablePlugins(ScalaJSPlugin)
+  )
+  .dependsOn(core)
+  .enablePlugins(ScalaJSPlugin)
 
 
         
