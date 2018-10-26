@@ -74,7 +74,7 @@ object Versions {
   object scalaJs {
     val lib = "0.6.18"
     val dom = "0.9.2"
-    val react = "1.1.0"
+    val react = "1.3.1"
     val css = "0.5.3"
     val diode = "1.1.2"
     val jQuery = "0.9.1"

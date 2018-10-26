@@ -1,0 +1,1 @@
+window.oidc = require('oidc-client');

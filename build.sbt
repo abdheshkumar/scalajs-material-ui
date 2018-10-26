@@ -7,7 +7,7 @@ val server = Project("server", file("server"))
   .settings(
     name := "Server",
     version := "0.1",
-    scalaVersion := "2.12.3",
+    scalaVersion := "2.12.7",
     organizationName := "abtechsoft.com",
     libraryDependencies ++= akkHttp.value)
 
@@ -37,7 +37,7 @@ val client = Project("client", file("client"))
   .settings(
     name := "scalajs-material-ui",
     version := "0.1",
-    scalaVersion := "2.12.3",
+    scalaVersion := "2.12.7",
     organizationName := "abtechsoft.com",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++=
@@ -60,7 +60,7 @@ val client = Project("client", file("client"))
     },
     fastOptJS in Compile := {
       val js = (fastOptJS in Compile).value
-      Process("npm run build-dev", baseDirectory.value).run().exitValue()
+      scala.sys.process.Process("npm run build-dev", baseDirectory.value).run().exitValue()
       js
     }
   )

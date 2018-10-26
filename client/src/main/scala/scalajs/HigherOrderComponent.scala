@@ -17,7 +17,7 @@ object HigherOrderComponent {
     wrappedComponent: ScalaComponent[P, _, _, Ctor]
   )(props: P)(
     childProps: Props
-  ): UnmountedWithRawType[js.Object, js.Object, RawMounted] = {
+  ): UnmountedWithRawType[js.Object, js.Object, RawMounted[js.Object,js.Object]] = {
     val jsProps = Box(props)
     val component = react.JsComponent[js.Object, Children.Varargs, js.Object](
       WithStyles(childProps.styles, childProps.options, wrappedComponent.raw)

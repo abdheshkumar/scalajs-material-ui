@@ -7,7 +7,7 @@ object Common {
 
   val buildSettings = Seq(
     installNpm := {
-      Process("npm install", baseDirectory.value).run().exitValue()
+      scala.sys.process.Process("npm install", baseDirectory.value).run().exitValue()
     },
     scalaJSUseMainModuleInitializer := true,
     // Uniformises fastOptJS/fullOptJS output file name
