@@ -7,10 +7,10 @@ window.moment = require("moment");
 window.numeral = require("numeral");
 */
 
-window['React'] = require('react');
+/*window['React'] = require('react');
 window['PropTypes'] = require('prop-types');
 window.React.PropTypes = window.PropTypes;
-window['ReactDOM'] = require('react-dom');
+window['ReactDOM'] = require('react-dom');*/
 /*
 (function(global){
     global['mui'] = require("material-ui");

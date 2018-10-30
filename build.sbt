@@ -42,27 +42,37 @@ val client = Project("client", file("client"))
     organizationName := "abtechsoft.com",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++=
-      autoWire.value ++
+      //autoWire.value ++
         scalaJsReact.value ++
-        scalaCss.value ++
-        scalaCssReact.value ++
-        scalaJsdiode.value ++
-        scalaJsdom.value ++
-        scalaJsReactBridge.value
+        //scalaCss.value ++
+        //scalaCssReact.value ++
+        //scalaJsdiode.value ++
+        scalaJsdom.value// ++
+        //scalaJsReactBridge.value
   )
   .settings(Common.buildSettings: _*)
   .settings(
     dependencyOverrides += "org.webjars.npm" % "js-tokens" % "3.0.2",
-    npmDependencies in Compile ++= Seq(
-      "react" -> "16.5.1",
-      "react-dom" -> "16.5.1"
-    ),
+    jsDependencies ++= Seq(
+
+      "org.webjars.npm" % "react" % "16.5.1"
+        /        "umd/react.development.js"
+        minified "umd/react.production.min.js"
+        commonJSName "React",
+
+      "org.webjars.npm" % "react-dom" % "16.5.1"
+        /         "umd/react-dom.development.js"
+        minified  "umd/react-dom.production.min.js"
+        dependsOn "umd/react.development.js"
+        commonJSName "ReactDOM"),
     emitSourceMaps in(Compile, fullOptJS) := false,
     fullOptJS in Compile := {
       val srcRoot = baseDirectory.value.getParentFile
       Process("npm run build-prod", baseDirectory.value).run.exitValue()
       val js = (fullOptJS in Compile).value
-      //(Process("java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level ADVANCED --jscomp_off=checkVars --js_output_file " + (srcRoot / "ui/apps/scalajs-material-ui/all.min.js").getAbsolutePath, baseDirectory.value)).run().exitValue()
+      val command = "java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level SIMPLE --jscomp_off=checkVars --js_output_file " + (srcRoot / "ui/apps/scalajs-material-ui/all.min.js").getAbsolutePath
+      println(command)
+      (Process(command, baseDirectory.value)).run().exitValue()
       js
     },
     fastOptJS in Compile := {
@@ -71,9 +81,9 @@ val client = Project("client", file("client"))
       js
     }
   )
-  .dependsOn(core)
+  //.dependsOn(core)
   .enablePlugins(ScalaJSPlugin)
-  .enablePlugins(ScalaJSBundlerPlugin)
+  //.enablePlugins(ScalaJSBundlerPlugin)
 
 
         

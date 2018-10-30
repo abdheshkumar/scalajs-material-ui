@@ -9,7 +9,7 @@ module.exports = {
     global: path.resolve(__dirname, './global.js')
   },
   output: {
-    path: path.resolve(__dirname,"./main/resources"),
+    path: path.resolve(__dirname,"./target/scala-2.12"),
     filename: '[name].js'
   },
   optimization: {
@@ -49,9 +49,9 @@ module.exports = {
       console.log("Merging files ...");
       const concat = require('concatenate-files');
       concat([
-          path.resolve(__dirname, "./target/scala-2.12/global.js"),
-          path.resolve(__dirname, "./target/scala-2.12/app.min.js"),
-          path.resolve(__dirname, "./target/scala-2.12/deps.min.js")
+          //path.resolve(__dirname, "./target/scala-2.12/global.js"),
+          path.resolve(__dirname, "./target/scala-2.12/deps.min.js"),
+          path.resolve(__dirname, "./target/scala-2.12/app.min.js")
         ],
         path.resolve(__dirname, "./target/scala-2.12/combined.js"), {separator: '\n/*File separator*/\n'}, function (err, result) {
           console.log("Merging files DONE.")
