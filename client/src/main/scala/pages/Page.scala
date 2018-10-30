@@ -17,15 +17,15 @@ object Page {
     (emptyRule
       | (staticRoute(root, Page1) ~> renderR { ctrl =>
         Page1Component(ctrl).render
-      }) | (staticRoute("page2", Page2) ~> renderR { ctrl =>
+      })/* | (staticRoute("page2", Page2) ~> renderR { ctrl =>
       Page2Component(ctrl).render
-    }) | InnerPage.route)
+    }) | InnerPage.route*/)
       .notFound(_ => redirectToPage(Page1)(Redirect.Replace))
-      .renderWith((_, result) => {
+      /*.renderWith((_, result) => {
         MuiThemeProvider(
           js.Dynamic.global.react_ui.theme.asInstanceOf[js.Object]
         )(JssProvider(classNamePrefix = "abtechsoft-")(App(result.render())))
-      })
+      })*/
       .logToConsole
   }
 }

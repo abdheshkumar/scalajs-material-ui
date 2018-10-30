@@ -3,18 +3,15 @@
 var path = require("path");
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+var WebpackOnBuildPlugin = require('on-build-webpack');
 module.exports = {
   entry: {
     global: path.resolve(__dirname, './global.js')
   },
   output: {
-    path: path.resolve(__dirname,"../ui/apps/scalajs-material-ui"),
+    path: path.resolve(__dirname,"./main/resources"),
     filename: '[name].js'
   },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({ options: {} })
-  ],
   optimization: {
     minimizer: [new UglifyJsPlugin({
       uglifyOptions: {
@@ -39,22 +36,39 @@ module.exports = {
       path.resolve(__dirname, '../ui/users-app/node_modules')
     ]
   },
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new WebpackOnBuildPlugin(function (stats) {
+      console.log("Build complete.");
+
+      console.log("Merging files ...");
+      const concat = require('concatenate-files');
+      concat([
+          path.resolve(__dirname, "./target/scala-2.12/global.js"),
+          path.resolve(__dirname, "./target/scala-2.12/app.min.js"),
+          path.resolve(__dirname, "./target/scala-2.12/deps.min.js")
+        ],
+        path.resolve(__dirname, "./target/scala-2.12/combined.js"), {separator: '\n/*File separator*/\n'}, function (err, result) {
+          console.log("Merging files DONE.")
+        });
+    })
+  ],
+
   module: {
     rules: [
       {
-        enforce: "pre",
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(js|jsx)$/,
-        loader:'babel-loader',
-        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env',"@babel/preset-react"],
+          plugins: ['react-hot-loader/babel', "@babel/plugin-proposal-class-properties"]
+        }
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -120,5 +134,5 @@ module.exports = {
         ],
       },
     ]
-  }
+  },
 };

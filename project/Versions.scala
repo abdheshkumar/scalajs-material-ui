@@ -80,7 +80,7 @@ object Versions {
     val jQuery = "0.9.1"
     val `jointJs-facade` = "0.1.1"
     val `querki-jsext` = "0.8"
-    val bridge = "0.4.0"
+    val bridge = "0.6.0"
 
   }
 

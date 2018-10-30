@@ -1,5 +1,6 @@
 import sbt.Keys.version
 import Dependencies._
+import scala.sys.process.Process
 
 val root = Project("root", file("."))
 
@@ -37,7 +38,7 @@ val client = Project("client", file("client"))
   .settings(
     name := "scalajs-material-ui",
     version := "0.1",
-    scalaVersion := "2.12.7",
+    scalaVersion := "2.12.6",
     organizationName := "abtechsoft.com",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++=
@@ -51,21 +52,28 @@ val client = Project("client", file("client"))
   )
   .settings(Common.buildSettings: _*)
   .settings(
+    dependencyOverrides += "org.webjars.npm" % "js-tokens" % "3.0.2",
+    npmDependencies in Compile ++= Seq(
+      "react" -> "16.5.1",
+      "react-dom" -> "16.5.1"
+    ),
     emitSourceMaps in(Compile, fullOptJS) := false,
     fullOptJS in Compile := {
-      val srcRoot = baseDirectory.value.getParentFile.getParentFile
+      val srcRoot = baseDirectory.value.getParentFile
+      Process("npm run build-prod", baseDirectory.value).run.exitValue()
       val js = (fullOptJS in Compile).value
-      //Process("npm run build-prod", baseDirectory.value).#&&(Process("java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level SIMPLE --js_output_file " + (srcRoot / "web_servers/static/apps/service-management-app/all.min.js").getAbsolutePath, baseDirectory.value)).run()
+      //(Process("java -jar " + (srcRoot / "_utils/google-closure/compiler.jar").getAbsolutePath + " --js " + (baseDirectory.value / "target/scala-2.12/combined.js") + " --compilation_level ADVANCED --jscomp_off=checkVars --js_output_file " + (srcRoot / "ui/apps/scalajs-material-ui/all.min.js").getAbsolutePath, baseDirectory.value)).run().exitValue()
       js
     },
     fastOptJS in Compile := {
       val js = (fastOptJS in Compile).value
-      scala.sys.process.Process("npm run build-dev", baseDirectory.value).run().exitValue()
+      //scala.sys.process.Process("npm run build-dev", baseDirectory.value).run().exitValue()
       js
     }
   )
   .dependsOn(core)
   .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSBundlerPlugin)
 
 
         
