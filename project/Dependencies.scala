@@ -33,7 +33,7 @@ object Dependencies {
 
   val scalaJsdiode = Def.setting(Seq(
     "io.suzaku" %%% "diode" % Versions.scalaJs.diode,
-    "io.suzaku" %%% "diode-react" % Versions.scalaJs.diode
+    "io.suzaku" %%% "diode-react" % Versions.scalaJs.diodeReact
   ))
 
   val scalaTags = Def.setting(Seq(

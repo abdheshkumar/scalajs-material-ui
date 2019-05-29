@@ -74,13 +74,14 @@ object Versions {
   object scalaJs {
     val lib = "0.6.18"
     val dom = "0.9.2"
-    val react = "1.3.1"
+    val react = "1.4.2"
     val css = "0.5.3"
-    val diode = "1.1.2"
+    val diodeReact = "1.1.5.142"
+    val diode = "1.1.5"
     val jQuery = "0.9.1"
     val `jointJs-facade` = "0.1.1"
     val `querki-jsext` = "0.8"
-    val bridge = "0.4.0"
+    val bridge = "0.8.0"
 
   }
 

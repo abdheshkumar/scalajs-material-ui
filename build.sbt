@@ -7,7 +7,7 @@ val server = Project("server", file("server"))
   .settings(
     name := "Server",
     version := "0.1",
-    scalaVersion := "2.12.7",
+    scalaVersion := "2.12.8",
     organizationName := "abtechsoft.com",
     libraryDependencies ++= akkHttp.value)
 
@@ -20,7 +20,7 @@ val core = (project in file("core"))
     scalacOptions := Seq("-unchecked", "-deprecation", "-feature"),
     libraryDependencies ++= {
       val scalaJsDomV = "0.9.3"
-      val scalaJsReactV = "1.2.0"
+      val scalaJsReactV = "1.4.2"
       val scalatestV = "3.0.1"
       Seq(
         "org.scala-lang" % "scala-reflect" % scalaVersion.value % Provided,
@@ -37,7 +37,7 @@ val client = Project("client", file("client"))
   .settings(
     name := "scalajs-material-ui",
     version := "0.1",
-    scalaVersion := "2.12.7",
+    scalaVersion := "2.12.8",
     organizationName := "abtechsoft.com",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++=

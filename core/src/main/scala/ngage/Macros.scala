@@ -39,7 +39,7 @@ object Macros {
       q"""
         new _root_.com.payalabs.scalajs.react.bridge.JsWriter[${implicitly[WeakTypeTag[A]].tpe}] {
           override def toJs(value: ${implicitly[WeakTypeTag[A]].tpe}): _root_.scala.scalajs.js.Any = {
-            _root_.com.payalabs.scalajs.react.bridge.ReactBridgeComponent.propsToDynamic(${computeParams})
+            _root_.com.payalabs.scalajs.react.bridge.ReactBridgeComponent.propsToDynamic($computeParams)
           }
 
         }

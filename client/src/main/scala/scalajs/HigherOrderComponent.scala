@@ -6,6 +6,8 @@ import reactjs.WithStyles
 import reactjs.theme.MuiRawTheme
 import japgolly.scalajs.react
 import japgolly.scalajs.react.{Children => ChildrenType}
+
+import scala.language.higherKinds
 import scala.scalajs.js
 
 object HigherOrderComponent {

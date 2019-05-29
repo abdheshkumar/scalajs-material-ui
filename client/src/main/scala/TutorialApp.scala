@@ -13,6 +13,9 @@ object TutorialApp extends JSWriterGenerator {
     val baseUrl = BaseUrl.fromWindowOrigin / "pages" / "scalajs-material-ui/"
     val router: Router[Page] = Router(baseUrl, Page.routes.logToConsole)
     router().renderIntoDOM(dom.document.getElementById("playground"))
+
+//    Router(baseUrl, Page.routes)()
+//      .renderIntoDOM(dom.document.body)
   }
 
 
