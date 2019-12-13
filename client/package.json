@@ -97,7 +97,7 @@
     "style-loader": "0.20.0",
     "url-loader": "0.6.2",
     "webpack": "3.11.0",
-    "webpack-dev-server": "2.9.6",
+    "webpack-dev-server": "3.1.11",
     "log4javascript": "1.4.15",
     "oidc-client": "^1.5.0-beta.2",
     "numeral": "~2.0.6",
