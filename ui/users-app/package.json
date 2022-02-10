@@ -89,7 +89,7 @@
     "i18next-xhr-backend": "1.4.3",
     "jest": "22.1.0",
     "log4javascript": "1.4.15",
-    "node-sass": "4.7.2",
+    "node-sass": "7.0.0",
     "numeral": "~2.0.6",
     "oidc-client": "^1.5.3",
     "open-browser-webpack-plugin": "0.0.5",
